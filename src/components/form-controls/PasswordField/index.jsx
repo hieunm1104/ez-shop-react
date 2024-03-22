@@ -1,6 +1,6 @@
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { OutlinedInput, TextField } from "@mui/material";
+import { FormHelperText } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import IconButton from "@mui/material/IconButton";
 import Input from "@mui/material/Input";
@@ -9,15 +9,16 @@ import InputLabel from "@mui/material/InputLabel";
 import React, { useState } from "react";
 import { Controller } from "react-hook-form";
 function PasswordField(props) {
-  const { form, name, label, disabled } = props;
+  const { form, name } = props;
   const [showPassword, setShowPassword] = useState(false);
-
+  const {formState} = form;
+  const { errors } = formState;
   const toggleShowPassword = () => {
     setShowPassword((show) => !show);
   };
   return (
     <div>
-      <FormControl sx={{ m: 1, width: "25ch" }} variant="standard">
+      <FormControl error={!!errors[name]} sx={{ m: 1, width: "33ch" }} variant="standard">
         <InputLabel htmlFor={name}>Password</InputLabel>
         <Controller
           type={showPassword ? "text" : "password"}
@@ -27,6 +28,7 @@ function PasswordField(props) {
             <Input
               {...field}
               id={name}
+              fullWidth
               type={showPassword ? "text" : "password"}
               endAdornment={
                 <InputAdornment position="end">
@@ -41,6 +43,7 @@ function PasswordField(props) {
             />
           )}
         />
+        <FormHelperText>{errors[name]?.message}</FormHelperText>
       </FormControl>
     </div>
   );

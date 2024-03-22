@@ -3,7 +3,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import InputField from "../../../../components/form-controls/InputField";
-import { Avatar, Button, Typography } from "@mui/material";
+import { Avatar, Button, LinearProgress, Typography } from "@mui/material";
 import { LockOutlined } from "@mui/icons-material";
 import "./style.css";
 import PasswordField from "../../../../components/form-controls/PasswordField";
@@ -19,6 +19,12 @@ function RegisterForm(props) {
           return value.split(" ").length > 2;
         }
       ),
+    email: yup
+      .string()
+      .required("pls enter your email")
+      .email("pls enter a valid email"),
+    password: yup.string().required("pls enter your password").min(6, "pls enter at least 6 characters."),
+    retypePassword: yup.string().required("pls retype your password").oneOf([yup.ref("password")], "Passwords does not match"),
   });
   const form = useForm({
     defaultValues: {
@@ -29,21 +35,24 @@ function RegisterForm(props) {
     },
     resolver: yupResolver(schema),
   });
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     const { onSubmit } = props;
     if (onSubmit) {
-      onSubmit(values);
+      await onSubmit(values);
     }
-    form.reset();
   };
+  const {isSubmitting} = form.formState
   return (
-    <div>
-      <Avatar>
-        <LockOutlined></LockOutlined>
-      </Avatar>
-      <Typography component="h3" variant="h5">
-        Create An Account
-      </Typography>
+    <div className="register-form">
+        {isSubmitting && <LinearProgress className="progress" />}
+      <div className="register-header">
+        <Avatar>
+          <LockOutlined></LockOutlined>
+        </Avatar>
+        <Typography component="h3" variant="h5">
+          Create An Account
+        </Typography>
+      </div>
       <form onSubmit={form.handleSubmit(handleSubmit)}>
         <div className="form-group">
           <InputField name="fullname" label="Full Name" form={form} />
@@ -54,10 +63,10 @@ function RegisterForm(props) {
             label="Retype Password"
             form={form}
           />
-        </div>
-        <Button variant="contained" color="primary" type="submit">
+        <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
           Create an account
         </Button>
+        </div>
       </form>
     </div>
   );

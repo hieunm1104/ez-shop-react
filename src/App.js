@@ -7,7 +7,6 @@ function App() {
   return (
     <div className="App">
       <Header />
-    
       <Switch>
         <Redirect from='/home' to="/" exact />
         <Redirect from='/post-list/:postId' to="/posts/:postId" exact />
