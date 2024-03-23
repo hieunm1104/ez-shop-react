@@ -1,0 +1,15 @@
+.product-list{
+    display: flex;
+}
+.left-column{
+    width: 250px;
+}
+.right-column{
+    flex: 1 1 0;
+}
+.pagination{
+    display: flex;
+    justify-content: center;
+    margin: 20px 0px;
+    padding-bottom: 20px;
+}

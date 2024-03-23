@@ -1,5 +1,15 @@
+.dialog{
+    position: relative;
+}
 .icon-close{
     position: absolute;
-    right: 5%;
-    top: 2%;
+    right: -85%;
+    width: 40px;
+}
+.btn-header{
+    color: aliceblue !important;
+}
+.title{
+    text-decoration: none;
+    color: aliceblue;
 }
