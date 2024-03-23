@@ -1,0 +1,18 @@
+.box{
+    padding: 20px;
+}
+.category-list{
+    margin: 0;
+    padding: 0;
+}
+.title-left{
+    color: black;
+    font-weight: bold;
+}
+li{
+    list-style: none;
+    cursor: pointer;
+}
+li:hover {
+    color: blue;
+}

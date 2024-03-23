@@ -5,6 +5,7 @@ import ProductList from "../components/ProductList";
 import ProductSkeletonList from "../components/ProductSkeletonList";
 import "./style.css";
 import ProductSort from "../components/ProductSort";
+import ProductFilters from "../components/ProductFilters";
 function ListPage(props) {
   const [productList, setProductList] = useState([]);
   const [pagination, setPagination] = useState({
@@ -24,7 +25,6 @@ function ListPage(props) {
         const { data, pagination } = await productApi.getAll(filter);
         setProductList(data.data);
         setPagination(pagination);
-        console.log("🚀 ~ pagination:", pagination)
       } catch (error) {
         console.log("failed to fetch product list", error);
       }
@@ -42,13 +42,20 @@ function ListPage(props) {
       ...prev, _sort: newSortValue}));
     };
 
-
+  const handleFiltersChange = (newFilters) => {
+    setFilter((prev) => ({
+      ...prev,
+      ...newFilters
+    }));
+  }
   return (
     <Box>
       <Container>
         <Grid container spacing={1} className="product-list">
           <Grid item className="left-column">
-            <Paper elevation={0}>Left column</Paper>
+            <Paper elevation={0}>
+              <ProductFilters onChange={handleFiltersChange} filters={filter}/>
+            </Paper>
           </Grid>
           <Grid item className="right-column">
             <Paper elevation={0}>
