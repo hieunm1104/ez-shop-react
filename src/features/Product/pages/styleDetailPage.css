@@ -2,10 +2,13 @@
     display: flex;
 }
 .left-column{
-    width: 250px;
+    width: 400px;
+    padding: 12px;
+    border-right: 1px solid gray;
 }
 .right-column{
     flex: 1 1 0;
+    padding: 12px;
 }
 .pagination{
     display: flex;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, Pagination } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Product from "./Product";
 
 function ProductList({ data = [] }) {

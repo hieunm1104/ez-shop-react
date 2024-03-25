@@ -1,0 +1,12 @@
+.filter-by-price{
+    padding: 20px;
+    border-top: 1px solid gray;
+}
+.btn-filter{
+    margin-top: 20px;
+}
+.range-price{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
