@@ -1,0 +1,12 @@
+.product-menu{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+a{
+    text-decoration: none !important;
+    color: black !important;
+}
+a.active{
+    color: blue !important;
+}

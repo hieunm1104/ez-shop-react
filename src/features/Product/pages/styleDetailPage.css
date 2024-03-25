@@ -16,3 +16,9 @@
     margin: 20px 0px;
     padding-bottom: 20px;
 }
+.loading{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}

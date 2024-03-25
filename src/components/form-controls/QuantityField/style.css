@@ -1,0 +1,5 @@
+.quantity-box{
+    display: flex;
+    flex-flow: row nowrap;
+    max-width: 200px;
+}

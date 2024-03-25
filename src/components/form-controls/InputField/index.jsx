@@ -12,10 +12,8 @@ function InputField(props) {
       control={form.control}
       margin="normal"
       variant="outlined"
-      render={({ field }) => <TextField {...field} error={!!errors[name]} helperText={errors[name]?.message} placeholder={label}  disabled={disabled}
-      fullWidth/>}
-      label={label}
-     
+      render={({ field }) => <TextField {...field} error={!!errors[name]} helperText={errors[name]?.message}   disabled={disabled }
+      fullWidth label={label}/>}
     />
   );
 }

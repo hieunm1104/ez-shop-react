@@ -3,8 +3,8 @@ import React from "react";
 import { STATIC_HOST, THUMBNAIL_PLACEHOLDER } from "../../../../constants";
 
 function ProductThumbnail({ product }) {
-  const thumbnailURL = product.thumbnail
-    ? `${STATIC_HOST}${product.thumbnail?.url}`
+  const thumbnailURL = product.data?.thumbnail
+    ? `${STATIC_HOST}${product.data.thumbnail?.url}`
     : `${THUMBNAIL_PLACEHOLDER}`;
   return (
     <Box>
