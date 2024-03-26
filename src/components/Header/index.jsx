@@ -7,21 +7,24 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import Register from "../../features/Auth/components/Register";
 import Login from "../../features/Auth/components/Login";
-import { Box, IconButton, Menu, MenuItem } from "@mui/material";
-import { AccountCircle, Close } from "@mui/icons-material";
+import { Badge, Box, IconButton, Menu, MenuItem } from "@mui/material";
+import { AccountCircle, Close, ShoppingCart } from "@mui/icons-material";
 import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../features/Auth/userSlice";
+import { cartItemsCountSelector } from "../../features/Cart/selectors";
 export default function Header() {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState("login");
   const [anchorEl, setAnchorEl] = useState(null);
+  const history = useHistory();
   const loggedInUser = useSelector((state) => state.user.current);
   const isLoggedIn = !!loggedInUser.id;
+  const cartItemsCount = useSelector(cartItemsCountSelector);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -38,6 +41,9 @@ export default function Header() {
   const handleLogoutClick = () => {
     const action = logout();
     dispatch(action);
+  }
+  const handleCartClick = () => {
+    history.push('/cart')
   }
   return (
     <div>
@@ -61,6 +67,11 @@ export default function Header() {
               Login
             </Button>
           )}
+           <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={handleCartClick}>
+              <Badge badgeContent={cartItemsCount} color="error">
+                <ShoppingCart />
+              </Badge>
+            </IconButton>
           {
             isLoggedIn && (
              <IconButton color="inherit" onClick={handleUserClick}>

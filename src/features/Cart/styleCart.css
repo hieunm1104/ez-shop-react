@@ -1,0 +1,16 @@
+.cart {
+    padding: 20px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+.list-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+img{
+    width: 200px;
+}
+.cart-left{
+    padding: 20px;
+}
